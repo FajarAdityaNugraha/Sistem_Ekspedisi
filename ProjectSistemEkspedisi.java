@@ -8,9 +8,10 @@ public class ProjectSistemEkspedisi {
         Scanner penerima = new Scanner(System.in);
         Scanner Barang = new Scanner(System.in);
         Scanner ongkir = new Scanner(System.in);
-        // login
+        Scanner pembayaran = new Scanner(System.in);
+
         String username, password;
-        // input data pengirim
+
         String namapng = "";
         String alamatpng = "";
         String provpng = "";
@@ -21,7 +22,7 @@ public class ProjectSistemEkspedisi {
         String kdpng = "";
         String kcpng = "";
         String dpng = "";
-        // input data penerima
+
         String namapnr = "";
         String alamatpnr = "";
         String provpnr = "";
@@ -32,13 +33,17 @@ public class ProjectSistemEkspedisi {
         String kdpnr = "";
         String kcpnr = "";
         String dpnr = "";
-        // input data barang
+
         String NamaBarang = "";
         String pecahbelahInput = "";
         String Deskripsi = "";
-
         boolean pecahbelah;
-        // perhitungan ongkos kirim
+
+        boolean pembayaranKartuKredit;
+        boolean pembayaranSelesai;
+        String selesaikanpembayaran = "";
+        String pembayarankredit = "";
+
         int jumlah = 0;
         float Berat = 0;
         float jarakPengiriman;
@@ -160,6 +165,8 @@ public class ProjectSistemEkspedisi {
                         System.out.println("Berat Barang       :" + Berat + " Kg");
                         System.out.println("Deskripsi Barang   :" + Deskripsi);
                         System.out.println();//
+
+                        // untuk membedakan jenis barang pecah belah dan bukan sebelum dipacking
                         if (pecahbelah) {
                             System.out.println("(Barang akan mendapat ekstra perlindungan)");
                         } else {
@@ -183,9 +190,10 @@ public class ProjectSistemEkspedisi {
                         jarakPengiriman = ongkir.nextFloat();
                         System.out.println();//
 
-                        biayaPengiriman = ((Berat * biayaPerKg) + (jarakPengiriman * biayaPerKm));
+                        biayaPengiriman = ((Berat * biayaPerKg) + (jarakPengiriman * biayaPerKm)) * jumlah;
                         System.out.println("Total Biaya yang Harus dibayar = Rp." + biayaPengiriman);
 
+                        // untuk menentukan jenis pengiriman yang sesuai
                         if (jarakPengiriman > 100) {
                             if (Berat > 50) {
                                 System.out.println("Menggunakan pengiriman ekspres paket berat");
@@ -198,6 +206,72 @@ public class ProjectSistemEkspedisi {
 
                         break;
                     case 5:
+
+                        System.out.println("--------------------- Konfirmasi Pembayaran Paket ----------------------");
+
+                        System.out.println();//
+                        System.out.println("=============================== Pengirim ===============================");
+                        System.out.println();//
+                        System.out.println("Nama     : " + namapng);
+                        System.out.println("Alamat   : " + alamatpng + "," + Rpng + "," + dpng + "," + kcpng + ","
+                                + kotapng + "," + provpng + "," + kdpng);
+                        System.out.println("Nomor Hp : " + telpng);
+                        System.out.println("Email    : " + emailpng);
+
+                        System.out.println();//
+                        System.out.println("=============================== Penerima ===============================");
+                        System.out.println();//
+                        System.out.println("Nama     : " + namapnr);
+                        System.out.println("Alamat   : " + alamatpnr + "," + Rpnr + "," + dpnr + "," + kcpnr + ","
+                                + kotapnr + "," + provpnr + "," + kdpnr);
+                        System.out.println("Nomor Hp : " + telpnr);
+                        System.out.println("Email          : " + emailpnr);
+
+                        System.out.println();//
+                        System.out.println("|======================================================================|");
+                        System.out.println("|               Rincian Data Barang yang akan dikirim                  |");
+                        System.out.println("|======================================================================|");
+                        System.out.println("Nama Barang        :" + NamaBarang);
+                        System.out.println("Jenis Barang       :" + pecahbelahInput);
+                        System.out.println("Jumlah Barang      :" + jumlah + " Pcs");
+                        System.out.println("Berat Barang       :" + Berat + " Kg");
+                        System.out.println("Deskripsi Barang   :" + Deskripsi);
+                        System.out.println("------------------------------------------------------------------------");
+                        System.out.println("Total Biaya yang Harus dibayar = Rp." + biayaPengiriman);
+
+                        System.out.println();//
+
+                        System.out.print("Pembayaran dengan kartu kredit atau cash?  : ");
+                        pembayarankredit = pembayaran.nextLine();
+                        pembayaranKartuKredit = pembayarankredit.equalsIgnoreCase("cash");
+
+                        if (pembayaranKartuKredit) {
+                            System.out.println(
+                                    "Status Pembayaran menggunakan              : Pembayaran dengan uang tunai ");
+
+                        } else {
+                            System.out.println(
+                                    "Status Pembayaran menggunakan              : Pembayaran dengan kartu kredit diproses ");
+
+                        }
+                        System.out.println();//
+
+                        System.out.print("Konfirmasi Bahwa pembayaran telah selesai  : ");
+                        selesaikanpembayaran = pembayaran.nextLine();
+                        pembayaranSelesai = selesaikanpembayaran.equalsIgnoreCase("sudah");
+
+                        if (pembayaranSelesai) {
+                            System.out
+                                    .println("Status Pembayaran                          : Pembayaran Terkonfirmasi!");
+                            System.out.println();//
+                            System.out.println(
+                                    "--------------------- Silahkan Lanjutkan ke proses berikutnya! ----------------------");
+                        } else {
+                            System.out.println();//
+                            System.out.println(
+                                    "------------- Pembayaran Belum Selesai. Silahkan Selesaikan Pembayaran! -------------");
+                        }
+                        System.out.println();//
 
                         break;
                     case 0:
