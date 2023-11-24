@@ -4,7 +4,6 @@ public class ProjectSistemEkspedisi {
     public static Scanner inputEkspedisi = new Scanner(System.in);
     public static int maxPengiriman = 10;
     public static String[][] dataPengiriman = new String[maxPengiriman][14];
-
     public static int JumlahBarang;
     public static double JarakPengiriman = 0.0, biayaOngkir = 0.0, BeratBarang = 0.0;
 
@@ -86,7 +85,7 @@ public class ProjectSistemEkspedisi {
             System.out.println("|                           Selamat Datang !                          |");
             System.out.println("|=====================================================================|");
             System.out.println("|                                                                     |");
-            System.out.println("| 1.  Cek Paket                                                       |");
+            System.out.println("| 1.  Cek Paket Anda                                                  |");
             System.out.println("| 2.  Saran dan Kritik                                                |");
             System.out.println("|                                                                     |");
             System.out.println("=======================================================================");
@@ -316,7 +315,7 @@ public class ProjectSistemEkspedisi {
         boolean ditemukan = false;
         System.out.println();
         for (i = 0; i < maxPengiriman; i++) { // Fitur pencarian data pengiriman
-            if (dataPengiriman[i][0] != null && !dataPengiriman[i][0].isEmpty()) {
+            if (dataPengiriman[i][1] != null && !dataPengiriman[i][1].isEmpty()) {
                 if (nomorPesananCari == i + 1) {
                     ditemukan = true;
 
@@ -366,18 +365,58 @@ public class ProjectSistemEkspedisi {
                         switch (layananPengiriman) {
                             case 1:
                                 // Pemilihan pengiriman dengan layanan ekspedisi hemat
+                                Hemat();
                                 break;
                             case 2:
                                 // Pemilihan pengiriman dengan layanan ekspedisi reguler
+                                Reguler();
                                 break;
                             case 3:
                                 // Pemilihan pengiriman dengan layanan ekspedisi kargo
+                                Kargo();
                                 break;
                             default:
                                 System.out.println(
                                         "---------------- Layanan ekspedisi tidak valid ! -------------------");
                         }
-                        break;
+                        // Tampilan setelah memilih layanan ekspedisi
+                        System.out.println(
+                                "========================= PENGIRIMAN KE-" + (i + 1) + " ==========================");
+                        System.out
+                                .println("-------------------------- Pengirim --------------------------------");
+                        System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
+                        System.out.println(" Alamat Pengirim          : " + dataPengiriman[i][2]);
+                        System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
+                        System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
+                        System.out
+                                .println("-------------------------- Pengirim --------------------------------");
+                        System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
+                        System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
+                        System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
+                        System.out.println(" Email Penerima           : " + dataPengiriman[i][8]);
+                        System.out
+                                .println("------------------------ Detail Barang -----------------------------");
+                        System.out.println(" Nama Barang              : " + dataPengiriman[i][9]);
+                        System.out.println(" Jumlah Barang            : " + dataPengiriman[i][10] + " Pcs");
+                        System.out.println(" Berat Barang             : " + dataPengiriman[i][11] + " Kg");
+                        System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
+                        System.out.println("------------------------------------------------------------------");
+                        System.out.println(" Total Biaya Yang Harus Dibayar = Rp." + biayaOngkir);
+                        System.out.println("==================================================================");
+                        System.out.println();
+                        System.out.println(" Apakah Anda ingin menginput data pengiriman lagi ? ");
+                        System.out.println(" [ 1 untuk 'Iya'  ]");
+                        System.out.println(" [ 0 untuk 'Tidak ]");
+                        System.out.print(" Pilih Salah Satu          : ");
+                        int lanjut = inputEkspedisi.nextInt();
+                        System.out.println("==================================================================");
+                        System.out.println();
+
+                        if (lanjut == 0) {
+                            break;
+                        }
+                        i++; // Menambah jumlah data setiap baru menginput
+
                     } while (true);
                     break;
                 }
@@ -390,6 +429,38 @@ public class ProjectSistemEkspedisi {
             System.out.println("-----------------------------------------------------------------------");
             System.out.println();
         }
+
+    }
+
+    public static void Hemat() { // Jika berat Barang Kurang dari 10kg dan Jarak Kurang Dari 20km
+        double beratBarang = Double.parseDouble(dataPengiriman[i][11]);
+        double JarakPengiriman = Double.parseDouble(dataPengiriman[i][12]);
+        int TarifPerKm = 0;
+        int TarifPerKg = 500;
+        int TarifDasar = 2000;
+
+        biayaOngkir = (JarakPengiriman * TarifPerKm) + (beratBarang * TarifPerKg) + TarifDasar;
+    }
+
+    public static void Reguler() { // Jika Berat Barang >10kg & >50kg dan Jarak Lebih Dari 20km
+        double beratBarang = Double.parseDouble(dataPengiriman[i][11]);
+        double JarakPengiriman = Double.parseDouble(dataPengiriman[i][12]);
+        int TarifPerKm = 1000;
+        int TarifPerKg = 1000;
+        int TarifDasar = 5000;
+
+        biayaOngkir = (JarakPengiriman * TarifPerKm) + (beratBarang * TarifPerKg) + TarifDasar;
+
+    }
+
+    public static void Kargo() { // Jika Berat Barang Lebih dari 50kg
+        double beratBarang = Double.parseDouble(dataPengiriman[i][11]);
+        double JarakPengiriman = Double.parseDouble(dataPengiriman[i][12]);
+        int TarifPerKm = 1000;
+        int TarifPerKg = 1000;
+        int TarifDasar = 50000;
+
+        biayaOngkir = (JarakPengiriman * TarifPerKm) + (beratBarang * TarifPerKg) + TarifDasar;
 
     }
 
