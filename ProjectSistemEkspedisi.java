@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class ProjectSistemEkspedisi {
@@ -169,6 +170,15 @@ public class ProjectSistemEkspedisi {
     ///////////////////////////// MENU ADMIN /////////////////////////////
 
     public static int i = 0; // Deklarasi indeks
+    public static Random random = new Random(); // Membuat angkia Random Untuk No resi
+
+    public static String BuatNoResi() { // Untuk Membuat Nomor Pesananan Secara Acak
+        int NoPesanan = 100000 + random.nextInt(900000);
+        return String.valueOf(NoPesanan);
+
+    }
+
+    public static String noResi = BuatNoResi();// Untuk Menyimpan agarr No Resi yg Sudah Diinput Tidak berubah nilainya
 
     private static void DataPengirimanan() { // HALAMAN INPUT DATA PENGIRIMAN
 
@@ -201,6 +211,8 @@ public class ProjectSistemEkspedisi {
                         System.out.println(
                                 "========================= DATA PENGIRIMAN KE-" + (i + 1)
                                         + " ========================");
+                        System.out.println(" Nomor Resi               : " + noResi);
+                        dataPengiriman[i][0] = noResi;
                         System.out
                                 .println("----------------------- Masukkan Data Pengirim ------------------------");
                         System.out.print(" Nama Pengirim            : ");
@@ -325,7 +337,8 @@ public class ProjectSistemEkspedisi {
                                     + " =======================");
                     System.out
                             .println("====================================================================");
-                    System.out.println();
+                    System.out.println(" Nomor Resi               : " + noResi);
+                    dataPengiriman[i][0] = noResi;
                     System.out
                             .println("-------------------------- Pengirim --------------------------------");
                     System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
@@ -355,7 +368,6 @@ public class ProjectSistemEkspedisi {
                         System.out.println("| 1. Hemat                                                         |");
                         System.out.println("| 2. Reguler                                                       |");
                         System.out.println("| 3. Kargo                                                         |");
-                        System.out.println("| 0. Kembali ke Beranda                                            |");
                         System.out.println("|                                                                  |");
                         System.out.println("--------------------------------------------------------------------");
                         System.out.print("Masukkan pilihan anda : ");
@@ -382,6 +394,8 @@ public class ProjectSistemEkspedisi {
                         // Tampilan setelah memilih layanan ekspedisi
                         System.out.println(
                                 "========================= PENGIRIMAN KE-" + (i + 1) + " ==========================");
+                        System.out.println(" Nomor Resi               : " + noResi);
+                        dataPengiriman[i][0] = noResi;
                         System.out
                                 .println("-------------------------- Pengirim --------------------------------");
                         System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
