@@ -3,12 +3,35 @@ import java.util.Scanner;
 
 public class ProjectSistemEkspedisi {
     public static Scanner inputEkspedisi = new Scanner(System.in);
+    // Deklarasi Array
     public static int maxPengiriman = 10;
-    public static String[][] dataPengiriman = new String[maxPengiriman][14];
-    public static int JumlahBarang;
+    public static String[][] dataPengiriman = new String[maxPengiriman][20];
+    // Deklarasi indeks
+    public static int i = 0;
+    // Deklarasi variabel untuk menghitung Ongkir
     public static double JarakPengiriman = 0.0, biayaOngkir = 0.0, BeratBarang = 0.0;
+    int JumlahBarang;
+    // deklarasi variabel random
+    private static Random random = new Random();
+
+    // fungsi untuk membuat No Resi
+    public static String BuatNoResi() {
+        int Resi = random.nextInt(100000);
+        return String.valueOf(Resi);
+    }
+
+    // fungsi untuk Menyimpan nilai didalam variabel Resi kedalam array
+    public static void inisialisasiDataPengiriman() {
+        for (int i = maxPengiriman - 1; i >= 0; i--) {
+            // Menyimpan Nilai agar tidak berubah-ubah saat ditampilkan kembali
+            if (dataPengiriman[i][0] == null) {
+                dataPengiriman[i][0] = BuatNoResi();
+            }
+        }
+    }
 
     public static void main(String[] args) {
+        // Tampilan Menu Utama sistem Ekspedisi
         BerandaSistemEkspedisi();
     }
 
@@ -43,13 +66,12 @@ public class ProjectSistemEkspedisi {
     }
 
     public static void logIn() {
-        String[][] LoginUser = { { "a", "a" } };
-
+        inputEkspedisi.nextLine();
+        String[][] LoginUser = { { "admin", "admin" } };
         String username = "", password = "";
         byte Pilihan = 0;
         while (Pilihan < 3) {
             System.out.println("=================== Silahkan Login terlebih dahulu ====================");
-            inputEkspedisi.nextLine();
             System.out.print(" Masukkan Username anda  : ");
             username = inputEkspedisi.nextLine();
             System.out.print(" Masukkan Password Anda  : ");
@@ -83,11 +105,12 @@ public class ProjectSistemEkspedisi {
         do {
             System.out.println();
             System.out.println("=======================================================================");
-            System.out.println("|                           Selamat Datang !                          |");
+            System.out.println("|                         Ekspedisi Pattimura                         |");
             System.out.println("|=====================================================================|");
             System.out.println("|                                                                     |");
             System.out.println("| 1.  Cek Paket Anda                                                  |");
             System.out.println("| 2.  Saran dan Kritik                                                |");
+            System.out.println("| 0.  Kembali                                                         |");
             System.out.println("|                                                                     |");
             System.out.println("=======================================================================");
             System.out.print(" Pilih Menu : ");
@@ -100,6 +123,9 @@ public class ProjectSistemEkspedisi {
                     break;
                 case 2:
                     saranKritik();
+                    break;
+                case 0:
+                    BerandaSistemEkspedisi();
                     break;
                 default:
                     System.out.println();
@@ -169,17 +195,6 @@ public class ProjectSistemEkspedisi {
 
     ///////////////////////////// MENU ADMIN /////////////////////////////
 
-    public static int i = 0; // Deklarasi indeks
-    public static Random random = new Random(); // Membuat angkia Random Untuk No resi
-
-    public static String BuatNoResi() { // Untuk Membuat Nomor Pesananan Secara Acak
-        int NoPesanan = 100000 + random.nextInt(900000);
-        return String.valueOf(NoPesanan);
-
-    }
-
-    public static String noResi = BuatNoResi();// Untuk Menyimpan agarr No Resi yg Sudah Diinput Tidak berubah nilainya
-
     private static void DataPengirimanan() { // HALAMAN INPUT DATA PENGIRIMAN
 
         while (true) {
@@ -202,8 +217,8 @@ public class ProjectSistemEkspedisi {
                 case 1: // INPUT DATA PENGIRIMAN
 
                     do {
+                        inisialisasiDataPengiriman();
                         inputEkspedisi.nextLine();
-
                         System.out.println("=======================================================================");
                         System.out.println("|                    Silahkan input Data Pengiriman                   |");
                         System.out.println("=======================================================================");
@@ -211,8 +226,7 @@ public class ProjectSistemEkspedisi {
                         System.out.println(
                                 "========================= DATA PENGIRIMAN KE-" + (i + 1)
                                         + " ========================");
-                        System.out.println(" Nomor Resi               : " + noResi);
-                        dataPengiriman[i][0] = noResi;
+                        System.out.println(" Nomor Resi                : " + dataPengiriman[i][0]);
                         System.out
                                 .println("----------------------- Masukkan Data Pengirim ------------------------");
                         System.out.print(" Nama Pengirim            : ");
@@ -253,61 +267,61 @@ public class ProjectSistemEkspedisi {
                         int lanjut = inputEkspedisi.nextInt();
                         System.out.println("=====================================================================");
                         System.out.println();
-
+                        i++; // Menambah jumlah data setiap baru menginput
                         if (lanjut == 0) {
                             break;
                         }
-                        i++; // Menambah jumlah data setiap baru menginput
+
                     } while (true);
 
                     break;
                 case 2: // PENGECEKAN DATA PENGIRIMAN YANG ADA
-
                     System.out.println("=======================================================================");
                     System.out.println("|                             Data Pengiriman                         |");
                     System.out.println("=======================================================================");
                     System.out.println();
-
-                    for (int i = 0; i < maxPengiriman; i++) {
-                        if (dataPengiriman[i][0] != null && !dataPengiriman[i][0].isEmpty()) {
-
-                            System.out.println(
-                                    "======================= DATA PENGIRIMAN KE-" + (i + 1)
-                                            + " =======================");
-                            System.out
-                                    .println("====================================================================");
-                            System.out.println(" Nomor Resi               : " + dataPengiriman[i][0]);
-                            System.out.println("====================================================================");
-                            System.out
-                                    .println("-------------------------- Pengirim --------------------------------");
-                            System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
-                            System.out.println(" Alamat Pengirim          : " + dataPengiriman[i][2]);
-                            System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
-                            System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
-                            System.out
-                                    .println("-------------------------- Pengirim --------------------------------");
-                            System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
-                            System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
-                            System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
-                            System.out.println(" Email Penerima           : " + dataPengiriman[i][8]);
-                            System.out
-                                    .println("------------------------ Detail Barang -----------------------------");
-                            System.out.println(" Nama Barang              : " + dataPengiriman[i][9]);
-                            System.out.println(" Jumlah Barang            : " + dataPengiriman[i][10] + " Pcs");
-                            System.out.println(" Berat Barang             : " + dataPengiriman[i][11] + " Kg");
-                            System.out.println(" Jarak Pengiriman         : " + dataPengiriman[i][12] + " Km");
-                            System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
-                            System.out
-                                    .println("====================================================================");
-                            System.out.println();
-                        }
-                    }
+                    cekDataPengiriman();
                     break;
                 case 0: // KEMBALI KE MENU UTAMA ADMIN
                     BerandaAdmin();
                 default:
                     System.out.println();
                     System.out.println("------------------------- Pilihan Tidak Valid! ------------------------");
+            }
+        }
+    }
+
+    public static void cekDataPengiriman() {
+        for (int i = 0; i < maxPengiriman; i++) {
+            if (dataPengiriman[i][1] != null && !dataPengiriman[i][1].isEmpty()) {
+                System.out.println(
+                        "======================= DATA PENGIRIMAN KE-" + (i + 1) + " =======================");
+                System.out
+                        .println("====================================================================");
+                System.out.println(" Nomor Resi               : " + dataPengiriman[i][0]);
+                System.out.println("====================================================================");
+                System.out
+                        .println("-------------------------- Pengirim --------------------------------");
+                System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
+                System.out.println(" Alamat Pengirim          : " + dataPengiriman[i][2]);
+                System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
+                System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
+                System.out
+                        .println("-------------------------- Pengirim --------------------------------");
+                System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
+                System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
+                System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
+                System.out.println(" Email Penerima           : " + dataPengiriman[i][8]);
+                System.out
+                        .println("------------------------ Detail Barang -----------------------------");
+                System.out.println(" Nama Barang              : " + dataPengiriman[i][9]);
+                System.out.println(" Jumlah Barang            : " + dataPengiriman[i][10] + " Pcs");
+                System.out.println(" Berat Barang             : " + dataPengiriman[i][11] + " Kg");
+                System.out.println(" Jarak Pengiriman         : " + dataPengiriman[i][12] + " Km");
+                System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
+                System.out
+                        .println("====================================================================");
+                System.out.println();
             }
         }
 
@@ -330,15 +344,13 @@ public class ProjectSistemEkspedisi {
             if (dataPengiriman[i][1] != null && !dataPengiriman[i][1].isEmpty()) {
                 if (nomorPesananCari == i + 1) {
                     ditemukan = true;
-
                     inputEkspedisi.nextLine();
                     System.out.println(
                             "======================= DATA PENGIRIMAN KE-" + (i + 1)
                                     + " =======================");
                     System.out
                             .println("====================================================================");
-                    System.out.println(" Nomor Resi               : " + noResi);
-                    dataPengiriman[i][0] = noResi;
+                    System.out.println(" Nomor Resi                : " + dataPengiriman[i][0]);
                     System.out
                             .println("-------------------------- Pengirim --------------------------------");
                     System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
@@ -360,79 +372,63 @@ public class ProjectSistemEkspedisi {
                     System.out
                             .println("====================================================================");
                     System.out.println();
-                    do {
-                        System.out.println("====================================================================");
-                        System.out.println("|       Silahkan Pilih Layanan Ekspedisi yang akan digunakan !     |");
-                        System.out.println("====================================================================");
-                        System.out.println("|                                                                  |");
-                        System.out.println("| 1. Hemat                                                         |");
-                        System.out.println("| 2. Reguler                                                       |");
-                        System.out.println("| 3. Kargo                                                         |");
-                        System.out.println("|                                                                  |");
-                        System.out.println("--------------------------------------------------------------------");
-                        System.out.print("Masukkan pilihan anda : ");
-                        int layananPengiriman = inputEkspedisi.nextInt();
-                        System.out.println("====================================================================");
-
-                        switch (layananPengiriman) {
-                            case 1:
-                                // Pemilihan pengiriman dengan layanan ekspedisi hemat
-                                Hemat();
-                                break;
-                            case 2:
-                                // Pemilihan pengiriman dengan layanan ekspedisi reguler
-                                Reguler();
-                                break;
-                            case 3:
-                                // Pemilihan pengiriman dengan layanan ekspedisi kargo
-                                Kargo();
-                                break;
-                            default:
-                                System.out.println(
-                                        "---------------- Layanan ekspedisi tidak valid ! -------------------");
-                        }
-                        // Tampilan setelah memilih layanan ekspedisi
-                        System.out.println(
-                                "========================= PENGIRIMAN KE-" + (i + 1) + " ==========================");
-                        System.out.println(" Nomor Resi               : " + noResi);
-                        dataPengiriman[i][0] = noResi;
-                        System.out
-                                .println("-------------------------- Pengirim --------------------------------");
-                        System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
-                        System.out.println(" Alamat Pengirim          : " + dataPengiriman[i][2]);
-                        System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
-                        System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
-                        System.out
-                                .println("-------------------------- Pengirim --------------------------------");
-                        System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
-                        System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
-                        System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
-                        System.out.println(" Email Penerima           : " + dataPengiriman[i][8]);
-                        System.out
-                                .println("------------------------ Detail Barang -----------------------------");
-                        System.out.println(" Nama Barang              : " + dataPengiriman[i][9]);
-                        System.out.println(" Jumlah Barang            : " + dataPengiriman[i][10] + " Pcs");
-                        System.out.println(" Berat Barang             : " + dataPengiriman[i][11] + " Kg");
-                        System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
-                        System.out.println("------------------------------------------------------------------");
-                        System.out.println(" Total Biaya Yang Harus Dibayar = Rp." + biayaOngkir);
-                        System.out.println("==================================================================");
-                        System.out.println();
-                        System.out.println(" Apakah Anda ingin menginput data pengiriman lagi ? ");
-                        System.out.println(" [ 1 untuk 'Iya'  ]");
-                        System.out.println(" [ 0 untuk 'Tidak ]");
-                        System.out.print(" Pilih Salah Satu          : ");
-                        int lanjut = inputEkspedisi.nextInt();
-                        System.out.println("==================================================================");
-                        System.out.println();
-
-                        if (lanjut == 0) {
+                    System.out.println("====================================================================");
+                    System.out.println("|       Silahkan Pilih Layanan Ekspedisi yang akan digunakan !     |");
+                    System.out.println("====================================================================");
+                    System.out.println("|                                                                  |");
+                    System.out.println("| 1. Hemat                                                         |");
+                    System.out.println("| 2. Reguler                                                       |");
+                    System.out.println("| 3. Kargo                                                         |");
+                    System.out.println("|                                                                  |");
+                    System.out.println("--------------------------------------------------------------------");
+                    System.out.print("Masukkan pilihan anda : ");
+                    int layananPengiriman = inputEkspedisi.nextInt();
+                    System.out.println("====================================================================");
+                    switch (layananPengiriman) {
+                        case 1:
+                            // Pemilihan pengiriman dengan layanan ekspedisi hemat
+                            Hemat();
                             break;
-                        }
-                        i++; // Menambah jumlah data setiap baru menginput
-
-                    } while (true);
-                    break;
+                        case 2:
+                            // Pemilihan pengiriman dengan layanan ekspedisi reguler
+                            Reguler();
+                            break;
+                        case 3:
+                            // Pemilihan pengiriman dengan layanan ekspedisi kargo
+                            Kargo();
+                            break;
+                        default:
+                            System.out.println(
+                                    "---------------- Layanan ekspedisi tidak valid ! -------------------");
+                    }
+                    // Tampilan setelah memilih layanan ekspedisi
+                    System.out.println(
+                            "========================= PENGIRIMAN KE-" + (i + 1) + " ==========================");
+                    System.out.println(" Nomor Resi                : " + dataPengiriman[i][0]);
+                    System.out
+                            .println("-------------------------- Pengirim --------------------------------");
+                    System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
+                    System.out.println(" Alamat Pengirim          : " + dataPengiriman[i][2]);
+                    System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
+                    System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
+                    System.out
+                            .println("-------------------------- Pengirim --------------------------------");
+                    System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
+                    System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
+                    System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
+                    System.out.println(" Email Penerima           : " + dataPengiriman[i][8]);
+                    System.out
+                            .println("------------------------ Detail Barang -----------------------------");
+                    System.out.println(" Nama Barang              : " + dataPengiriman[i][9]);
+                    System.out.println(" Jumlah Barang            : " + dataPengiriman[i][10] + " Pcs");
+                    System.out.println(" Berat Barang             : " + dataPengiriman[i][11] + " Kg");
+                    System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
+                    System.out.println("--------------------------------------------------------------------");
+                    System.out.println(" Total Biaya ongkir       = Rp." + biayaOngkir);
+                    System.out.println("====================================================================");
+                    System.out.println();
+                    System.out.println("------------- Silahkan Lanjutkan ke proses berikutnya! -------------");
+                    i++; // Menambah jumlah data setiap baru menginput
                 }
             }
         }
@@ -443,7 +439,6 @@ public class ProjectSistemEkspedisi {
             System.out.println("-----------------------------------------------------------------------");
             System.out.println();
         }
-
     }
 
     public static void Hemat() { // Jika berat Barang Kurang dari 10kg dan Jarak Kurang Dari 20km
