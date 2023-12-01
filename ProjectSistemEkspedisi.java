@@ -30,6 +30,10 @@ public class ProjectSistemEkspedisi {
         }
     }
 
+    public static void inisialisasiArray() {
+        dataPengiriman[i][14] = String.valueOf(biayaOngkir);
+    }
+
     public static void main(String[] args) {
         // Tampilan Menu Utama sistem Ekspedisi
         BerandaSistemEkspedisi();
