@@ -11,6 +11,8 @@ public class ProjectSistemEkspedisi {
     // Deklarasi variabel untuk menghitung Ongkir
     public static double JarakPengiriman = 0.0, biayaOngkir = 0.0, BeratBarang = 0.0;
     int JumlahBarang;
+    // Konfirmasi Pembayaran
+    public static boolean pembayaranSelesai;
     // deklarasi variabel random
     private static Random random = new Random();
 
@@ -69,12 +71,19 @@ public class ProjectSistemEkspedisi {
         } while (true);
     }
 
+    // Variabel Global data untuk login
+    public static String username = "", password = "";
+
     public static void logIn() {
         inputEkspedisi.nextLine();
-        String[][] LoginUser = { { "admin", "admin" } };
-        String username = "", password = "";
-        byte Pilihan = 0;
-        while (Pilihan < 3) {
+        String[][] LoginUser = {
+                { "admin1", "admin1", "1" },
+                { "admin2", "admin2", "1" },
+                { "admin3", "admin3", "1" }, };
+
+        byte Kesempatan = 0;
+        // Halaman Login !
+        while (Kesempatan < 3) {
             System.out.println("=================== Silahkan Login terlebih dahulu ====================");
             System.out.print(" Masukkan Username anda  : ");
             username = inputEkspedisi.nextLine();
@@ -83,20 +92,29 @@ public class ProjectSistemEkspedisi {
             System.out.println();
             System.out.println("=======================================================================");
             System.out.println();
-            if (LoginUser[0][0].equalsIgnoreCase(username) && LoginUser[0][1].equalsIgnoreCase(password)) {
-                System.out.println("=======================================================================");
-                System.out.println("|                           Login Berhasil !                          |");
-                System.out.println("=======================================================================");
-                BerandaAdmin();
-            } else {
-                System.out.println("|=====================================================================|");
-                System.out.println("|             Login gagal. Username atau password salah !             |");
-                System.out.println("|                         Silahkan Coba Lagi                          |");
-                System.out.println("|=====================================================================|");
-                Pilihan++;
+
+            for (String[] user : LoginUser) {
+                String storedUsername = user[0];
+                String storedPassword = user[1];
+                String role = user[2];
+                // Tampilan Jika Login Berhasil !
+                if (storedUsername.equals(username) && storedPassword.equals(password) && role.equals("1")) {
+                    System.out.println("Selamat datang " + username);
+                    System.out.println("=======================================================================");
+                    System.out.println("|                           Login Berhasil !                          |");
+                    System.out.println("=======================================================================");
+                    BerandaAdmin();
+                } else { // Tampilan Jika Login Gagal !
+                    continue;
+                }
             }
+            System.out.println("|=====================================================================|");
+            System.out.println("|             Login gagal. Username atau password salah !             |");
+            System.out.println("|                         Silahkan Coba Lagi                          |");
+            System.out.println("|=====================================================================|");
+            Kesempatan++;
         }
-        if (Pilihan == 3) {
+        if (Kesempatan == 3) { // Jika Login gagal lebih dari 3 kali maka akan keluar dari program
             System.out.println();
             System.out.println("|=====================================================================|");
             System.out.println("|                Anda telah melebihi batas upaya login !              |");
@@ -161,7 +179,6 @@ public class ProjectSistemEkspedisi {
             byte Pilih = inputEkspedisi.nextByte();
             System.out.println("-----------------------------------------------------------------------");
             System.out.println();
-
             switch (Pilih) {
                 case 1:
                     DataPengirimanan();
@@ -198,9 +215,8 @@ public class ProjectSistemEkspedisi {
     }
 
     ///////////////////////////// MENU ADMIN /////////////////////////////
-
-    private static void DataPengirimanan() { // HALAMAN INPUT DATA PENGIRIMAN
-
+    private static void DataPengirimanan() {
+        // HALAMAN INPUT DATA PENGIRIMAN
         while (true) {
             System.out.println("");
             System.out.println("=======================================================================");
@@ -216,10 +232,8 @@ public class ProjectSistemEkspedisi {
             byte Pilih = inputEkspedisi.nextByte();
             System.out.println("=======================================================================");
             System.out.println();
-
             switch (Pilih) {
                 case 1: // INPUT DATA PENGIRIMAN
-
                     do {
                         inisialisasiDataPengiriman();
                         inputEkspedisi.nextLine();
@@ -275,9 +289,7 @@ public class ProjectSistemEkspedisi {
                         if (lanjut == 0) {
                             break;
                         }
-
                     } while (true);
-
                     break;
                 case 2: // PENGECEKAN DATA PENGIRIMAN YANG ADA
                     System.out.println("=======================================================================");
@@ -296,6 +308,8 @@ public class ProjectSistemEkspedisi {
     }
 
     public static void cekDataPengiriman() {
+        // Menampilkan Data pengiriman yang sudah diinput
+        // Hanya Menampilkan data pengiriman yang sudah diinput saja
         for (int i = 0; i < maxPengiriman; i++) {
             if (dataPengiriman[i][1] != null && !dataPengiriman[i][1].isEmpty()) {
                 System.out.println(
@@ -328,7 +342,6 @@ public class ProjectSistemEkspedisi {
                 System.out.println();
             }
         }
-
     }
 
     public static void layananEkspedisi() { // Pemilihan layanan ekspedisi yang ingin digunakan
@@ -478,7 +491,81 @@ public class ProjectSistemEkspedisi {
     }
 
     public static void Pembayaran() {
-
+        System.out.println();
+        System.out.println("=======================================================================");
+        System.out.println("|                         Konfirmasi Pembayaran                       |");
+        System.out.println("=======================================================================");
+        System.out.println("------------------ Cari Nomor Pesanan Terlebih dahulu -----------------");
+        System.out.println();
+        System.out.print(" Silahkan Cari Data Pengiriman Ke- : ");
+        int nomorPesananCari = inputEkspedisi.nextInt();
+        System.out.println("-----------------------------------------------------------------------");
+        System.out.println();
+        boolean ditemukan = false;
+        System.out.println();
+        for (i = 0; i < maxPengiriman; i++) {
+            if (dataPengiriman[i][1] != null && !dataPengiriman[i][1].isEmpty()) {
+                if (nomorPesananCari == i + 1) {
+                    ditemukan = true;
+                    System.out.println(
+                            "========================= PENGIRIMAN KE-" + (i + 1) + " ==========================");
+                    System.out.println("Nomor Resi : " + dataPengiriman[i][0]);
+                    System.out
+                            .println("-------------------------- Pengirim --------------------------------");
+                    System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
+                    System.out.println(" Alamat Pengirim          : " + dataPengiriman[i][2]);
+                    System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
+                    System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
+                    System.out
+                            .println("-------------------------- Pengirim --------------------------------");
+                    System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
+                    System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
+                    System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
+                    System.out.println(" Email Penerima           : " + dataPengiriman[i][8]);
+                    System.out
+                            .println("------------------------ Detail Barang -----------------------------");
+                    System.out.println(" Nama Barang              : " + dataPengiriman[i][9]);
+                    System.out.println(" Jumlah Barang            : " + dataPengiriman[i][10] + " Pcs");
+                    System.out.println(" Berat Barang             : " + dataPengiriman[i][11] + " Kg");
+                    System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
+                    System.out.println("------------------------------------------------------------------");
+                    System.out.println(" Total Biaya Yang Harus Dibayar : Rp." + biayaOngkir);
+                    System.out.println("==================================================================");
+                    System.out.println();
+                    inputEkspedisi.nextLine();
+                    if (!pembayaranSelesai) {
+                        System.out.print("Masukkan jumlah uang yang dibayarkan untuk biaya pengiriman: Rp.");
+                        double uangDibayarkan = inputEkspedisi.nextDouble();
+                        double kembalian = uangDibayarkan - biayaOngkir;
+                        System.out.println("=======================================================================");
+                        System.out.println("|                           Rincian Pembayaran                        |");
+                        System.out.println("=======================================================================");
+                        System.out.println(" Nomor Resi                     : " + dataPengiriman[i][0]);
+                        System.out.println("-----------------------------------------------------------------------");
+                        System.out.println(" Uang yang dibayarkan           : Rp." + uangDibayarkan);
+                        System.out.println(" Biaya Ongkir                   : Rp." + biayaOngkir);
+                        System.out.println(" Kembalian                      : Rp." + kembalian);
+                        System.out.println(" Status Pembayaran              : Pembayaran Terkonfirmasi!");
+                        System.out.println("-----------------------------------------------------------------------");
+                        System.out.println();//
+                        System.out.println("-------------- Silahkan Lanjutkan ke proses berikutnya! ---------------");
+                    } else {
+                        System.out.println();//
+                        System.out.println(
+                                "------------- Pembayaran Belum Selesai. Silahkan Selesaikan Pembayaran! -------------");
+                    }
+                }
+                if (!ditemukan) {
+                    System.out.println("-----------------------------------------------------------------------");
+                    System.out.println(
+                            "[       Data Pengiriman dengan nomor pesanan " + nomorPesananCari
+                                    + " tidak ditemukan !      ]");
+                    System.out.println("-----------------------------------------------------------------------");
+                    System.out.println();
+                }
+                break;
+            }
+        }
     }
 
     public static void Penjadwalan() {
