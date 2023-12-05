@@ -581,7 +581,43 @@ public class ProjectSistemEkspedisi {
     /////////////////////////// MENU PELANGGAN ////////////////////////////////
 
     public static void cekPaket() {
-
+        inputEkspedisi.nextLine();
+        System.out.print("Masukkan No.Resi yang ingin dicari: ");
+        String cariPaket = inputEkspedisi.nextLine();
+        for (int i = 0; i < dataPengiriman.length; i++) {
+            if (dataPengiriman[i][0].equals(cariPaket)) {
+                System.out
+                        .println("=======================================================================");
+                System.out.println("|                         Ekspedisi Pattimura                         |");
+                System.out.println("=======================================================================");
+                System.out.println(" Nomor Resi               : " + dataPengiriman[i][0]);
+                System.out.println("=======================================================================");
+                System.out
+                        .println("-------------------------- Pengirim -----------------------------------");
+                System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
+                System.out.println(" Alamat Pengirim          : " + dataPengiriman[i][2]);
+                System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
+                System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
+                System.out
+                        .println("-------------------------- Pengirim -----------------------------------");
+                System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
+                System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
+                System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
+                System.out.println(" Email Penerima           : " + dataPengiriman[i][8]);
+                System.out
+                        .println("------------------------ Detail Barang --------------------------------");
+                System.out.println(" Nama Barang              : " + dataPengiriman[i][9]);
+                System.out.println(" Jumlah Barang            : " + dataPengiriman[i][10] + " Pcs");
+                System.out.println(" Berat Barang             : " + dataPengiriman[i][11] + " Kg");
+                System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
+                System.out.println("-----------------------------------------------------------------------");
+                System.out.println(" Total Biaya Pengiriman : " + dataPengiriman[i][14]);
+                System.out
+                        .println("=======================================================================");
+                break;
+            }
+        }
+        System.out.println("Nilai tidak ditemukan dalam array");
     }
 
     public static void penilaian() {
