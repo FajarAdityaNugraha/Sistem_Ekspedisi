@@ -577,7 +577,67 @@ public class ProjectSistemEkspedisi {
     }
 
     public static void Penjadwalan() {
+        System.out.println();
+        System.out.println("=======================================================================");
+        System.out.println("|                      Jadwalkan Pengiriman Paket                     |");
+        System.out.println("=======================================================================");
+        System.out.println("------------------ Cari Nomor Pesanan Terlebih dahulu -----------------");
+        System.out.println();
+        System.out.print(" Silahkan Cari Data Pengiriman Ke- : ");
+        int nomorPesananCari = inputEkspedisi.nextInt();
+        System.out.println("-----------------------------------------------------------------------");
+        boolean ditemukan = false;
+        System.out.println();
+        inputEkspedisi.nextLine();
+        for (int i = 0; i < maxPengiriman; i++) {
+            if (dataPengiriman[i][1] != null && !dataPengiriman[i][1].isEmpty()) {
+                if (nomorPesananCari == i + 1) {
+                    ditemukan = true;
+                    System.out.println(
+                            "====================== JADWAL PENGIRIMAN KE-" + (i + 1) + " =========================");
+                    System.out.printf("|%-69s|\n", " Nomor Resi : " + dataPengiriman[i][0]);
+                    System.out
+                            .println("----------------------------- Pengirim --------------------------------");
+                    System.out.println(" Nama Pengirim            : " + dataPengiriman[i][1]);
+                    System.out.println(" Alamat Pengirim          : " + dataPengiriman[i][2]);
+                    System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
+                    System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
+                    System.out
+                            .println("----------------------------- Penerima --------------------------------");
+                    System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
+                    System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
+                    System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
+                    System.out.println(" Email Penerima           : " + dataPengiriman[i][8]);
+                    System.out
+                            .println("--------------------------- Detail Barang -----------------------------");
+                    System.out.println(" Nama Barang              : " + dataPengiriman[i][9]);
+                    System.out.println(" Jumlah Barang            : " + dataPengiriman[i][10] + " Pcs");
+                    System.out.println(" Berat Barang             : " + dataPengiriman[i][11] + " Kg");
+                    System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
+                    System.out.println("-----------------------------------------------------------------------");
+                    System.out.printf("|%-69s|\n", " Total Biaya Yang Harus Dibayar : Rp." + dataPengiriman[i][14]);
 
+                    System.out.println("-----------------------------------------------------------------------");
+                    System.out.print(" Masukkan Tanggal Pengiriman (dd/mm/yy) : ");
+                    dataPengiriman[i][15] = inputEkspedisi.nextLine();
+                    System.out.print(" Masukkan waktu pengiriman (WIB)        : ");
+                    dataPengiriman[i][16] = inputEkspedisi.nextLine();
+                    dataPengiriman[0][17] = "PAKET SEDANG DALAM PROSES PENGEMASAN";
+                    System.out
+                            .println("-----------------------------------------------------------------------");
+                    System.out.printf("|%-69s|\n", " Status Pengiriman : " + dataPengiriman[i][17]);
+                    System.out.println("-----------------------------------------------------------------------");
+                }
+            }
+        }
+        if (!ditemukan) {
+            System.out.println("-----------------------------------------------------------------------");
+            System.out.println(
+                    "[       Data Pengiriman dengan nomor pesanan " + nomorPesananCari
+                            + " tidak ditemukan !      ]");
+            System.out.println("-----------------------------------------------------------------------");
+            System.out.println();
+        }
     }
 
     public static void updPengiriman() {
