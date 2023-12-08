@@ -6,6 +6,10 @@ public class ProjectSistemEkspedisi {
     // Deklarasi Array
     public static int maxPengiriman = 10;
     public static String[][] dataPengiriman = new String[maxPengiriman][20];
+    static {
+        dataPengiriman [0] = new String[] {"123456",  "Vanessa", "Jl. Simbar Menjangan", "085812431350", "cristinvanessa6@gmail.com", "Salsa", "Jl. Kahyangan", "0845873452721", "salsabila@gmail.com", "Baju", "10", "1", "7", " Baju Thrift"};
+    }
+    static int nextIndex = 1;
     // Deklarasi indeks
     public static int i = 0;
     // Deklarasi variabel untuk menghitung Ongkir
@@ -239,46 +243,52 @@ public class ProjectSistemEkspedisi {
                     do {
                         inisialisasiDataPengiriman();
                         inputEkspedisi.nextLine();
+                        String resiBaru = BuatNoResi();
                         System.out.println("=======================================================================");
                         System.out.println("|                    Silahkan input Data Pengiriman                   |");
                         System.out.println("=======================================================================");
                         System.out.println();
                         System.out.println(
-                                "========================= DATA PENGIRIMAN KE-" + (i + 1)
+                                "========================= DATA PENGIRIMAN KE-" + (nextIndex + 1)
                                         + " ========================");
-                        System.out.println(" Nomor Resi                : " + dataPengiriman[i][0]);
+                        System.out.println(" Nomor Resi                : " + resiBaru);
                         System.out
                                 .println("----------------------- Masukkan Data Pengirim ------------------------");
                         System.out.print(" Nama Pengirim            : ");
-                        dataPengiriman[i][1] = inputEkspedisi.nextLine();
+                        String nama_pengirim = inputEkspedisi.nextLine();
                         System.out.print(" Alamat Pengirim          : ");
-                        dataPengiriman[i][2] = inputEkspedisi.nextLine();
+                        String alamat_kirim = inputEkspedisi.nextLine();
                         System.out.print(" Nomor Telepon Pengirim   : ");
-                        dataPengiriman[i][3] = inputEkspedisi.nextLine();
+                        String noTlpKirim = inputEkspedisi.nextLine();
                         System.out.print(" Email Pengirim           : ");
-                        dataPengiriman[i][4] = inputEkspedisi.nextLine();
+                        String emailKirim = inputEkspedisi.nextLine();
                         System.out
                                 .println("----------------------- Masukkan Data Penerima ------------------------");
                         System.out.print(" Nama Penerima            : ");
-                        dataPengiriman[i][5] = inputEkspedisi.nextLine();
+                        String nama_penerima = inputEkspedisi.nextLine();
                         System.out.print(" Alamat Penerima          : ");
-                        dataPengiriman[i][6] = inputEkspedisi.nextLine();
+                        String alamat_terima = inputEkspedisi.nextLine();
                         System.out.print(" Nomor Telepon Penerima   : ");
-                        dataPengiriman[i][7] = inputEkspedisi.nextLine();
+                        String noTlpTerima = inputEkspedisi.nextLine();
                         System.out.print(" Email Penerima           : ");
-                        dataPengiriman[i][8] = inputEkspedisi.nextLine();
+                        String emailTerima = inputEkspedisi.nextLine();
                         System.out
                                 .println("----------------------- Masukkan Data Barang --------------------------");
                         System.out.print(" Nama Barang              : ");
-                        dataPengiriman[i][9] = inputEkspedisi.nextLine();
+                        String nama_barang = inputEkspedisi.nextLine();
                         System.out.print(" Jumlah Barang            : ");
-                        dataPengiriman[i][10] = inputEkspedisi.nextLine();
+                        String jmlBarang = inputEkspedisi.nextLine();
                         System.out.print(" Berat Barang             : ");
-                        dataPengiriman[i][11] = inputEkspedisi.nextLine();
+                        String brtBrg = inputEkspedisi.nextLine();
                         System.out.print(" Total Jarak Pengiriman   : ");
-                        dataPengiriman[i][12] = inputEkspedisi.nextLine();
+                        String totJarak = inputEkspedisi.nextLine();
                         System.out.print(" Deskripsi (Opsional)     : ");
-                        dataPengiriman[i][13] = inputEkspedisi.nextLine();
+                        String deskripsi= inputEkspedisi.nextLine();
+
+                        dataPengiriman [nextIndex] = new String[] {resiBaru,  nama_pengirim, alamat_kirim, noTlpKirim, emailKirim, nama_penerima, alamat_terima, noTlpTerima, emailTerima, nama_barang, jmlBarang , brtBrg, totJarak, deskripsi};
+
+                        nextIndex ++;
+
                         System.out.println("---------------------------------------------------------------------");
                         System.out.println("Apakah Anda ingin input data pengiriman lagi ? ");
                         System.out.println("[ 1 untuk 'Iya'  ]");
