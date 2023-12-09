@@ -755,9 +755,7 @@ public class ProjectSistemEkspedisi {
                         statusBaru = "PAKET DITERIMA";
                         break;
                 }
-
                 dataPengiriman[ubah][17] = statusBaru;
-
                 // Menampilkan hasil update
                 if ("DITERIMA".equalsIgnoreCase(dataPengiriman[ubah][17])) {
                     System.out.println("Pengiriman sudah DITERIMA, tidak dapat diubah lagi !");
@@ -779,13 +777,17 @@ public class ProjectSistemEkspedisi {
 
     public static void cekPaket() {
         inputEkspedisi.nextLine();
-        System.out.print("Masukkan No.Resi yang ingin dicari: ");
+        System.out.print("Masukkan No. Resi yang ingin dicari : ");
         String cariPaket = inputEkspedisi.nextLine();
+
         for (int i = 0; i < dataPengiriman.length; i++) {
             if (dataPengiriman[i][0].equals(cariPaket)) {
                 System.out
                         .println("=======================================================================");
                 System.out.println("|                         Ekspedisi Pattimura                         |");
+                System.out.println("=======================================================================");
+                System.out.printf("| %-60s %-6s |\n", "Tanggal Pengiriman :" + dataPengiriman[i][15],
+                        dataPengiriman[i][16]);
                 System.out.println("=======================================================================");
                 System.out.println(" Nomor Resi               : " + dataPengiriman[i][0]);
                 System.out.println("=======================================================================");
@@ -796,7 +798,7 @@ public class ProjectSistemEkspedisi {
                 System.out.println(" Nomor Telepon Pengirim   : " + dataPengiriman[i][3]);
                 System.out.println(" Email Pengirim           : " + dataPengiriman[i][4]);
                 System.out
-                        .println("-------------------------- Penerima -----------------------------------");
+                        .println("-------------------------- Pengirim -----------------------------------");
                 System.out.println(" Nama Penerima            : " + dataPengiriman[i][5]);
                 System.out.println(" Alamat Penerima          : " + dataPengiriman[i][6]);
                 System.out.println(" Nomor Telepon Penerima   : " + dataPengiriman[i][7]);
@@ -809,16 +811,28 @@ public class ProjectSistemEkspedisi {
                 System.out.println(" Deskripsi (Opsional)     : " + dataPengiriman[i][13]);
                 System.out.println("-----------------------------------------------------------------------");
                 System.out.println(" Total Biaya Pengiriman : " + dataPengiriman[i][14]);
+                dataPengiriman[i][14] = String.valueOf(biayaOngkir);
+                System.out
+                        .println("-----------------------------------------------------------------------");
+                System.out.printf("|%-69s|\n", " Status Pengiriman : " + dataPengiriman[i][17]);
                 System.out
                         .println("=======================================================================");
-                break;
+                if ("PAKET DITERIMA".equals(dataPengiriman[i][17])) {
+                    // mengambil input penilaian
+                    System.out.print("Masukkan penilaian pelanggan (1-5): ");
+                    int penilaian = inputEkspedisi.nextInt();
+                    inputEkspedisi.nextLine();
+                    // Update penilaian dari pelanggan
+                    dataPengiriman[i][18] = String.valueOf(penilaian);
+                    System.out.println("penilaian : " + dataPengiriman[i][18]);
+                }
+                return;
             }
         }
-        System.out.println("Nilai tidak ditemukan dalam array");
+        System.out.println("Nomo Resi Tidak Ditemukan !");
     }
 
     public static void penilaian() {
-
     }
 
     public static void saranKritik() {
