@@ -601,7 +601,25 @@ public class ProjectSistemEkspedisi {
     }
 
     public static void RiwayatTransaksi() {
-
+        inisialisasiDataNoResi();
+        for (int i = 0; i < maxPengiriman; i++) {
+            if (dataPengiriman[i][1] != null && !dataPengiriman[i][1].isEmpty()) {
+                System.out.println("=======================================================================");
+                System.out.println("|                     Riwayat Transaksi Pengiriman                    |");
+                System.out.println("=======================================================================");
+                System.out.println(" Nomor Resi                     : " + dataPengiriman[i][0]);
+                System.out.println("--------------------------- Detail Pengiriman -------------------------");
+                System.out.println(" Pengirim                       : " + dataPengiriman[i][1]);
+                System.out.println(" Penerima                       : " + dataPengiriman[i][5]);
+                System.out.println("-----------------------------------------------------------------------");
+                System.out.println(" Uang yang dibayarkan           : Rp." + dataPengiriman[i][20]);
+                System.out.println(" Biaya Ongkir                   : Rp." + dataPengiriman[i][14]);
+                System.out.println(" Kembalian                      : Rp." + dataPengiriman[i][19]);
+                System.out.println(" Status Pembayaran              : Pembayaran Terkonfirmasi!");
+                System.out.println("-----------------------------------------------------------------------");
+                System.out.println();
+            }
+        }
     }
 
     public static void Penjadwalan() {
