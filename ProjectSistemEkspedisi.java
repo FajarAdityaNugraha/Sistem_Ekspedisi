@@ -212,7 +212,7 @@ public class ProjectSistemEkspedisi {
                     layananEkspedisi();
                     break;
                 case 3:
-                    Pembayaran();
+                    MenuPembayaran();
                     break;
                 case 4:
                     Penjadwalan();
@@ -485,6 +485,39 @@ public class ProjectSistemEkspedisi {
 
     }
 
+    public static void MenuPembayaran() {
+        do {
+            System.out.println();
+            System.out.println("=======================================================================");
+            System.out.println("|                         Ekspedisi Pattimura                         |");
+            System.out.println("|=====================================================================|");
+            System.out.println("|                                                                     |");
+            System.out.println("| 1.  Konfirmasi Pembayaran                                           |");
+            System.out.println("| 2.  Riwayat Transaksi                                               |");
+            System.out.println("| 0.  Kembali                                                         |");
+            System.out.println("|                                                                     |");
+            System.out.println("=======================================================================");
+            System.out.print(" Pilih Menu : ");
+            byte Pilih = inputEkspedisi.nextByte();
+            System.out.println("-----------------------------------------------------------------------");
+            System.out.println();
+            switch (Pilih) {
+                case 1:
+                    Pembayaran();
+                    break;
+                case 2:
+                    RiwayatTransaksi();
+                    break;
+                case 0:
+                    BerandaAdmin();
+                    break;
+                default:
+                    System.out.println();
+                    System.out.println("------------------------- Pilihan Tidak Valid! ------------------------");
+            }
+        } while (true);
+    }
+
     public static void Pembayaran() {
         inialisasipengirimanpertama();
         System.out.println();
@@ -564,6 +597,10 @@ public class ProjectSistemEkspedisi {
             System.out.println("-----------------------------------------------------------------------");
             System.out.println();
         }
+
+    }
+
+    public static void RiwayatTransaksi() {
 
     }
 
