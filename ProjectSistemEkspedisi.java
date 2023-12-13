@@ -199,7 +199,8 @@ public class ProjectSistemEkspedisi {
             System.out.println("| 4. Penjadwalan Pengiriman                                           |");
             System.out.println("| 5. Update Pengiriman                                                |");
             System.out.println("| 6. Riwayat Pengiriman                                               |");
-            System.out.println("| 7. Feedback                                                         |");
+            System.out.println("| 7. Feedback Pelanggan                                               |");
+            System.out.println("| 8. Help                                                             |");
             System.out.println("| 0. Log out                                                          |");
             System.out.println("|                                                                     |");
             System.out.println("=======================================================================");
@@ -228,6 +229,9 @@ public class ProjectSistemEkspedisi {
                     break;
                 case 7:
                     feedback();
+                    break;
+                case 8:
+                    MenuHelp();
                     break;
                 case 0:
                     System.out.println("=======================================================================");
@@ -857,7 +861,6 @@ public class ProjectSistemEkspedisi {
                     System.out.printf("|%-69s|\n", " Status Pengiriman : " + dataPengiriman[i][17]);
                     System.out
                             .println("=======================================================================");
-
                     if (dataPengiriman[i][18] != null && !dataPengiriman[i][18].isEmpty()) {
                         System.out.println(" Penilaian Pelanggan      : " + dataPengiriman[i][18] + " bintang");
                         System.out.println("-----------------------------------------------------------------------");
@@ -934,6 +937,87 @@ public class ProjectSistemEkspedisi {
     }
 
     public static void feedbackPelanggan() {
+
+    }
+
+    public static void MenuHelp() {
+        int pilihan;
+        do {
+            System.out.println();
+            System.out.println("=======================================================================");
+            System.out.println("|                          PANDUAN PENGGUNAAN !                       |");
+            System.out.println("|                      Sistem Ekspedisi Pattimura                     |");
+            System.out.println("|=====================================================================|");
+            System.out.println("|                                                                     |");
+            System.out.println("| 1. Panduan Penggunaan Fitur Data Pengiriman                         |");
+            System.out.println("| 2. Panduan Penggunaan Fitur Pilih Layanan Ekspedisi                 |");
+            System.out.println("| 3. Panduan Penggunaan Fitur Konfirmasi Pembayaran                   |");
+            System.out.println("| 4. Panduan Penggunaan Fitur Penjadwalan Pengiriman                  |");
+            System.out.println("| 5. Panduan Penggunaan Fitur Update Pengiriman                       |");
+            System.out.println("| 6. Panduan Penggunaan Fitur Riwayat Pengiriman                      |");
+            System.out.println("| 7. Panduan Penggunaan Fitur Feedback Pelanggan                      |");
+            System.out.println("| 0. Kembali                                                          |");
+            System.out.println("|                                                                     |");
+            System.out.println("=======================================================================");
+            System.out.print("Masukkan pilihan Anda : ");
+            pilihan = inputEkspedisi.nextInt();
+
+            switch (pilihan) {
+                case 1:
+                    PanduanFitur1();
+                    break;
+                case 2:
+                    PanduanFitur2();
+                    break;
+                case 3:
+                    PanduanFitur3();
+                    break;
+                case 4:
+                    PanduanFitur4();
+                    break;
+                case 5:
+                    PanduanFitur5();
+                    break;
+                case 6:
+                    PanduanFitur6();
+                    break;
+                case 7:
+                    PanduanFitur7();
+                    break;
+                case 0:
+                    BerandaAdmin();
+                default:
+                    System.out.println("Pilihan tidak valid. Silakan pilih lagi.");
+            }
+        } while (pilihan != 0);
+        inputEkspedisi.close();
+    }
+
+    public static void PanduanFitur1() {
+
+    }
+
+    public static void PanduanFitur2() {
+
+    }
+
+    public static void PanduanFitur3() {
+
+    }
+
+    public static void PanduanFitur4() {
+
+    }
+
+    public static void PanduanFitur5() {
+
+    }
+
+    public static void PanduanFitur6() {
+
+    }
+
+    public static void PanduanFitur7() {
 
     }
 }
