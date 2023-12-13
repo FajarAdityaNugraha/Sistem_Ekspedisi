@@ -933,11 +933,39 @@ public class ProjectSistemEkspedisi {
     }
 
     public static void feedback() {
+        System.out.println("=======================================================================");
+        System.out.println("|                    Feedback Dari Pelanggan                          |");
+        System.out.println("=======================================================================");
+        for (int i = 0; i < maxFeedback; i++) {
+            if (dataFeedback[i][0] != null && !dataFeedback[i][0].isEmpty()) {
 
+                System.out.println(" Nama                                   : " + dataFeedback[i][0]);
+                System.out.println(" Kepuasan terhadap pelayanan            : " + dataFeedback[i][1]);
+                System.out.println(" Kepuasan terhadap kecepatan pengiriman : " + dataFeedback[i][2]);
+                System.out.println(" Kendala yang dihadapi pelanggan        : " + dataFeedback[i][3]);
+                System.out.println(" Masukan atau Kritik & Saran            : " + dataFeedback[i][4]);
+                System.out
+                        .println("=======================================================================");
+            }
+        }
     }
 
     public static void feedbackPelanggan() {
-
+        inputEkspedisi.nextLine();
+        System.out.println("=======================================================================");
+        System.out.println("|                   Bagikan Pengalaman Anda !                         |");
+        System.out.println("=======================================================================");
+        System.out.print("Nama                                       : ");
+        dataFeedback[i][0] = inputEkspedisi.nextLine();
+        System.out.print("Seberapa puas anda dengan layanan kami     : ");
+        dataFeedback[i][1] = inputEkspedisi.nextLine();
+        System.out.print("Seberapa puas anda dengan pengiriman kami  : ");
+        dataFeedback[i][2] = inputEkspedisi.nextLine();
+        System.out.print("Apakah ada kendala yang anda hadapi        : ");
+        dataFeedback[i][3] = inputEkspedisi.nextLine();
+        System.out.print("Apa Masukan anda untuk sistem kami         : ");
+        dataFeedback[i][4] = inputEkspedisi.nextLine();
+        i++;// Menambahkan data baru
     }
 
     public static void MenuHelp() {
@@ -961,7 +989,7 @@ public class ProjectSistemEkspedisi {
             System.out.println("=======================================================================");
             System.out.print("Masukkan pilihan Anda : ");
             pilihan = inputEkspedisi.nextInt();
-
+            System.out.println();
             switch (pilihan) {
                 case 1:
                     PanduanFitur1();
