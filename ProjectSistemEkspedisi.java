@@ -15,6 +15,9 @@ public class ProjectSistemEkspedisi {
     public static boolean pembayaranSelesai;
     // deklarasi variabel random
     private static Random random = new Random();
+    // Array Feedback
+    public static int maxFeedback = 10;
+    public static String[][] dataFeedback = new String[maxFeedback][6];
 
     // fungsi untuk membuat No Resi
     public static String BuatNoResi() {
@@ -609,17 +612,12 @@ public class ProjectSistemEkspedisi {
         for (int i = 0; i < maxPengiriman; i++) {
             if (dataPengiriman[i][1] != null && !dataPengiriman[i][1].isEmpty()) {
                 System.out.println("=======================================================================");
-                System.out.println("|                     Riwayat Transaksi Pengiriman                    |");
+                System.out.printf("|%-69s|\n", " Riwayat Transaksi Pengiriman Ke- " + (i + 1));
                 System.out.println("=======================================================================");
                 System.out.println(" Nomor Resi                     : " + dataPengiriman[i][0]);
                 System.out.println("--------------------------- Detail Pengiriman -------------------------");
                 System.out.println(" Pengirim                       : " + dataPengiriman[i][1]);
                 System.out.println(" Penerima                       : " + dataPengiriman[i][5]);
-                System.out.println("-----------------------------------------------------------------------");
-                System.out.println(" Uang yang dibayarkan           : Rp." + dataPengiriman[i][20]);
-                System.out.println(" Biaya Ongkir                   : Rp." + dataPengiriman[i][14]);
-                System.out.println(" Kembalian                      : Rp." + dataPengiriman[i][19]);
-                System.out.println(" Status Pembayaran              : Pembayaran Terkonfirmasi!");
                 System.out.println("-----------------------------------------------------------------------");
                 if (dataPengiriman[i][20] == null || dataPengiriman[i][20].isEmpty() || dataPengiriman[i][19] == null
                         || dataPengiriman[i][19].isEmpty()) {
@@ -635,8 +633,7 @@ public class ProjectSistemEkspedisi {
                     System.out.println(" Kembalian                      : Rp." + dataPengiriman[i][19]);
                     System.out.println(" Status Pembayaran              : Pembayaran Terkonfirmasi!");
                 }
-
-                System.out.println("-----------------------------------------------------------------------");
+                System.out.println("=======================================================================");
                 System.out.println();
             }
         }
