@@ -955,16 +955,27 @@ public class ProjectSistemEkspedisi {
         System.out.println("=======================================================================");
         System.out.println("|                   Bagikan Pengalaman Anda !                         |");
         System.out.println("=======================================================================");
-        System.out.print("Nama                                       : ");
-        dataFeedback[i][0] = inputEkspedisi.nextLine();
+        System.out.print("Apakah Anda ingin membagikan identitas Anda? (ya/tidak) : ");
+        String pilihanIdentitas = inputEkspedisi.nextLine();
+        String nama = "Anonymous"; // Defautl menjadi "Anonymous" jika user tidak ingin membagikan identitas
+        if (pilihanIdentitas.equalsIgnoreCase("ya")) {
+            System.out.print("Nama                                       : ");
+            nama = inputEkspedisi.nextLine();
+        }
         System.out.print("Seberapa puas anda dengan layanan kami     : ");
-        dataFeedback[i][1] = inputEkspedisi.nextLine();
+        String puasLayanan = inputEkspedisi.nextLine();
         System.out.print("Seberapa puas anda dengan pengiriman kami  : ");
-        dataFeedback[i][2] = inputEkspedisi.nextLine();
+        String puasPengiriman = inputEkspedisi.nextLine();
         System.out.print("Apakah ada kendala yang anda hadapi        : ");
-        dataFeedback[i][3] = inputEkspedisi.nextLine();
+        String kendala = inputEkspedisi.nextLine();
         System.out.print("Apa Masukan anda untuk sistem kami         : ");
-        dataFeedback[i][4] = inputEkspedisi.nextLine();
+        String masukanSistem = inputEkspedisi.nextLine();
+        // untuk Menyiampan variabel kedalam array
+        dataFeedback[i][0] = nama;
+        dataFeedback[i][1] = puasLayanan;
+        dataFeedback[i][2] = puasPengiriman;
+        dataFeedback[i][3] = kendala;
+        dataFeedback[i][4] = masukanSistem;
         i++;// Menambahkan data baru
     }
 
