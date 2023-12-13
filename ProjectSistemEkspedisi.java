@@ -5,7 +5,7 @@ public class ProjectSistemEkspedisi {
     public static Scanner inputEkspedisi = new Scanner(System.in);
     // Deklarasi Array
     public static int maxPengiriman = 10;
-    public static String[][] dataPengiriman = new String[maxPengiriman][25];
+    public static String[][] dataPengiriman = new String[maxPengiriman][30];
     // Deklarasi indeks
     public static int i = 0;
     // Deklarasi variabel untuk menghitung Ongkir
@@ -156,7 +156,7 @@ public class ProjectSistemEkspedisi {
             System.out.println("|=====================================================================|");
             System.out.println("|                                                                     |");
             System.out.println("| 1.  Cek Paket Anda                                                  |");
-            System.out.println("| 2.  Saran dan Kritik                                                |");
+            System.out.println("| 2.  Feedback                                                        |");
             System.out.println("| 0.  Kembali                                                         |");
             System.out.println("|                                                                     |");
             System.out.println("=======================================================================");
@@ -169,7 +169,7 @@ public class ProjectSistemEkspedisi {
                     cekPaket();
                     break;
                 case 2:
-                    saranKritik();
+                    feedbackPelanggan();
                     break;
                 case 0:
                     BerandaSistemEkspedisi();
@@ -196,7 +196,7 @@ public class ProjectSistemEkspedisi {
             System.out.println("| 4. Penjadwalan Pengiriman                                           |");
             System.out.println("| 5. Update Pengiriman                                                |");
             System.out.println("| 6. Riwayat Pengiriman                                               |");
-            System.out.println("| 7. Kritik & Saran                                                   |");
+            System.out.println("| 7. Feedback                                                         |");
             System.out.println("| 0. Log out                                                          |");
             System.out.println("|                                                                     |");
             System.out.println("=======================================================================");
@@ -224,7 +224,7 @@ public class ProjectSistemEkspedisi {
                     RiwayatPengiriman();
                     break;
                 case 7:
-                    penilaian();
+                    feedback();
                     break;
                 case 0:
                     System.out.println("=======================================================================");
@@ -621,6 +621,22 @@ public class ProjectSistemEkspedisi {
                 System.out.println(" Kembalian                      : Rp." + dataPengiriman[i][19]);
                 System.out.println(" Status Pembayaran              : Pembayaran Terkonfirmasi!");
                 System.out.println("-----------------------------------------------------------------------");
+                if (dataPengiriman[i][20] == null || dataPengiriman[i][20].isEmpty() || dataPengiriman[i][19] == null
+                        || dataPengiriman[i][19].isEmpty()) {
+                    // Jika data pembayaran belum dilakukan
+                    System.out.println(" Uang yang dibayarkan           : -");
+                    System.out.println(" Biaya Ongkir                   : Rp." + dataPengiriman[i][14]);
+                    System.out.println(" Kembalian                      : -");
+                    System.out.println(" Status Pembayaran              : Belum Bayar / Terkonfirmasi!");
+                } else {
+                    // Jika data pembayaran sudah dilakukan
+                    System.out.println(" Uang yang dibayarkan           : Rp." + dataPengiriman[i][20]);
+                    System.out.println(" Biaya Ongkir                   : Rp." + dataPengiriman[i][14]);
+                    System.out.println(" Kembalian                      : Rp." + dataPengiriman[i][19]);
+                    System.out.println(" Status Pembayaran              : Pembayaran Terkonfirmasi!");
+                }
+
+                System.out.println("-----------------------------------------------------------------------");
                 System.out.println();
             }
         }
@@ -916,9 +932,11 @@ public class ProjectSistemEkspedisi {
         System.out.println("Nomo Resi Tidak Ditemukan !");
     }
 
-    public static void penilaian() {
+    public static void feedback() {
+
     }
 
-    public static void saranKritik() {
+    public static void feedbackPelanggan() {
+
     }
 }
