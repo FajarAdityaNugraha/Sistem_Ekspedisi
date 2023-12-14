@@ -1033,30 +1033,68 @@ public class ProjectSistemEkspedisi {
     }
 
     public static void PanduanFitur1() {
-
+        System.out.println("==================== PANDUAN FITUR DATA PENGIRIMAN ====================");
+        System.out.println();
+        System.out.println("Pada Fitur Data Pengiriman terdapat 3 menu yaitu :");
+        System.out.println();
+        System.out.println(
+                "1. Input Data Pengiriman\n Dalam Fitur ini Admin bertugas menginput Data Pengiriman seperti :");
+        System.out.println("- Identitas Pengirim\n- Identitas Penerima\n- Detail Barang yang akan dikirim");
+        System.out.println(
+                "2. Cek Seluruh Data Pengiriman\n Fitur ini Menampilkan Data Pengiriman Yang sudah diinput");
+        System.out.println("3. Kembali\n Fitur ini mengarahkan Admin Kembali ke Menu Utama");
+        System.out.println("=======================================================================");
     }
 
     public static void PanduanFitur2() {
-
+        System.out.println("=============== PANDUAN FITUR PILIH LAYANAN EKSPEDISI =================");
+        System.out.println(
+                "Pada Fitur ini terdapat 3 jenis pilihan layanan Ekspedisi yaitu\nHemat,Reguler, dan Kargo yang akan dipilih secara otomatis oleh sistem\nAlur yang harus dilakukan oleh Admin adlah sebagai berikut :");
+        System.out.println(
+                "1. Admin memilih No.2 pada menu beranda Admin\n2. Admin mencari Pesanan sesuai No Pesanan\n3. Kemudian akan tampil Pesanan beserta Biaya Ongkir yang harus dibayarkan ");
+        System.out.println("=======================================================================");
     }
 
     public static void PanduanFitur3() {
-
+        System.out.println("======================= PANDUAN FITUR PEMBAYARAN ======================");
+        System.out.println();
+        System.out.println("Pada Fitur Pembayaran terdapat 3 menu yaitu :");
+        System.out.println(
+                "1. Konfirmasi Pembayaran\nPada Fitur ini Admin bertugas Menginput uang yang dibayarkan pelanggan\n-pertama Admin Mecari pesanan berdasarkan No Pesanan\n-Kemudian Admin Menginput Sejumlah Nominal dari pelanggan sesuai Biaya Ongkir\n-Setelah itu akan Tampil Struk Pembayaran");
+        System.out.println(
+                "2. Riwayat Transaksi\nPada Fitur ini Menyimpan dan Menampilkan seluruh Transaksi yang sudah Terjadi\n3. Kembali\nFitur ini mengarahkan Admin Kembali ke Menu Utama");
+        System.out.println("=======================================================================");
     }
 
     public static void PanduanFitur4() {
-
+        System.out.println("================ PANDUAN FITUR PENJADWALAN PENGIRIMAN =================");
+        System.out.println();
+        System.out.println("Pada Fitur ini Admin Bertugas Menginput Tanggal dan jam Pengiriman Paket");
+        System.out.println(
+                "1. Admin memilih No.4 pada menu beranda Admin\n2. Admin mencari Pesanan sesuai No Pesanan\n3. Kemudian akan tampil Pesanan\n4. Setelah itu admin Menginput Tanggal dan jam Pengiriman\n5. Rincian Pengiriman akan Tampil dengan status pesanan 'PAKET SEDANG DALAM PROSES PENGEMASAN' ");
+        System.out.println("=======================================================================");
     }
 
     public static void PanduanFitur5() {
-
+        System.out.println("=================== PANDUAN FITUR UPDATE PENGIRIMAN ===================");
+        System.out.println();
+        System.out.println("Pada Fitur ini Admin Bertugas Mengupdate status Pengiriman ");
+        System.out.println(
+                "1. Admin Mencari Data Pengiriman Berdasarkan No resi\n2. Kemudian Admin Mengupdate satus pengiriman sesuai Kondisi paket\n3. setelah paket Berstatus 'PAKET DITERIMA' maka status pengiriman tidak dapat diubah lagi");
+        System.out.println("=======================================================================");
     }
 
     public static void PanduanFitur6() {
-
+        System.out.println("=================== PANDUAN FITUR RIWAYAT PENGIRIMAN ==================");
+        System.out.println();
+        System.out.println("Pada Fitur ini akan Menampilkan Riwayat pengiriman yang sudah dilakukan");
+        System.out.println("=======================================================================");
     }
 
     public static void PanduanFitur7() {
-
+        System.out.println("=================== PANDUAN FITUR FEEDBACK PELANGGAN ==================");
+        System.out.println();
+        System.out.println("Pada Fitur ini Menampilkan feedback dari pelanggan ");
+        System.out.println("=======================================================================");
     }
 }
