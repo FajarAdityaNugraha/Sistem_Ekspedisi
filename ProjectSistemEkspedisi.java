@@ -69,6 +69,10 @@ public class ProjectSistemEkspedisi {
         BerandaSistemEkspedisi();
     }
 
+    private static void Logout() {
+        System.exit(0);
+    }
+
     public static void BerandaSistemEkspedisi() {
         do {
             System.out.println();
@@ -79,6 +83,7 @@ public class ProjectSistemEkspedisi {
             System.out.println("|                                                                     |");
             System.out.println("| 1. Login ( Khusus Admin )                                           |");
             System.out.println("| 2. Cek Paket                                                        |");
+            System.out.println("| 3. Keluar Program                                                   |");
             System.out.println("|                                                                     |");
             System.out.println("=======================================================================");
             System.out.print(" Pilih Menu : ");
@@ -92,6 +97,8 @@ public class ProjectSistemEkspedisi {
                 case 2:
                     BerandaPelanggan();
                     break;
+                case 3:
+                    Logout();
                 default:
                     System.out.println();
                     System.out.println("------------------------- Pilihan Tidak Valid! ------------------------");
